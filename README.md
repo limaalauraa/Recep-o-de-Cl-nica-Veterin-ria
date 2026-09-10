@@ -47,6 +47,22 @@ historico_veterinaria = []
 registrar_acao(acao, id_pet)
   Adiciona um novo registro de evento no topo da pilha de histórico utilizando o método `.append()`.
 
+# Recepção-de-Clínica-Veterinária-Lista:
+   Lista:
+
+especies_atendidas = []
+  Cria a lista global vazia. Armazena os nomes das espécies de animais que a clínica está apta a atender 
+  (ex: "Cachorro", "Gato", "Ave"). Não são permitidas espécies duplicadas na lista.
+
+adicionar_especie(nome_especie)
+  Adiciona uma nova espécie à lista, caso ela ainda não exista, usando o comando `.append()`. Se a espécie 
+  já estiver cadastrada, apenas avisa que ela já existe e não a adiciona novamente.
+
+validar_especie(nome_especie)
+  Verifica se a espécie informada está presente na lista `especies_atendidas`, retornando `True` ou `False`. 
+  É chamada dentro de `adicionar_pet()` (no dicionario.py) para impedir que um pet seja cadastrado com uma 
+  espécie que a clínica não atende.
+
 desfazer_ultima_acao(fila_espera)
   Remove a última ação do topo da pilha utilizando o método `.pop()` e executa o processo inverso:
   - Se for `"CHAMAR"`: reverte o status do pet para `"Aguardando"` e chama a função `reverter_chamada_na_fila(id_pet)` para devolver o animal ao início da fila de espera.
