@@ -14,7 +14,7 @@ colocar_em_consulta(id_pet)
 voltar_para_espera(id_pet)
   Acessa o pet pelo ID e reverte seu status automaticamente para `"Aguardando"`. Caso o consultorio tenha colocado por engano.
 
-encerrar_consulta(id_pet):
+encerrar_consulta(id_pet)
   Acessa o pet pelo ID e muda seu status para "Encerrado". Foi criada para finalizar o fluxo de atendimento do animal.
 
 remover_pet(id_pet)
@@ -37,3 +37,17 @@ reverter_chamada_na_fila(id_pet)
 
 reverter_cadastro_na_fila(id_pet)
   Localiza e remove o ID do pet da lista com o comando `.remove()` caso o cadastro do animal seja cancelado no sistema.
+
+Pilha:
+
+historico_veterinaria = []
+  Cria a lista global que opera como Pilha (LIFO). Armazena as ações do sistema como 
+  tuplas imutáveis no formato `("AÇÃO", id_pet)`, como `("CADASTRAR", 101)` ou `("CHAMAR", 101)`.
+
+registrar_acao(acao, id_pet)
+  Adiciona um novo registro de evento no topo da pilha de histórico utilizando o método `.append()`.
+
+desfazer_ultima_acao(fila_espera)
+  Remove a última ação do topo da pilha utilizando o método `.pop()` e executa o processo inverso:
+  - Se for `"CHAMAR"`: reverte o status do pet para `"Aguardando"` e chama a função `reverter_chamada_na_fila(id_pet)` para devolver o animal ao início da fila de espera.
+  - Se for `"CADASTRAR"`: chama `reverter_cadastro_na_fila(id_pet)` para tirar o ID da fila e apaga o registro do banco de dados utilizando a função `remover_pet(id_pet)`.
