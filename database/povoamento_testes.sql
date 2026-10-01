@@ -1,3 +1,5 @@
+USE clinica_vet;
+
 -- 1. INSERÇÕES VÁLIDAS (Fluxo Normal da Aplicação)
 
 INSERT INTO ESPECIE (id_especie, nome_especie) VALUES (1, 'Cachorro');
