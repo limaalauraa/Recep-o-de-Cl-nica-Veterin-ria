@@ -1,0 +1,4 @@
+CREATE TABLE ESPECIE (
+    id_especie INT PRIMARY KEY,
+    nome_especie VARCHAR(100) NOT NULL UNIQUE
+);
